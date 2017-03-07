@@ -1,3 +1,8 @@
 <resources>
     <string name="app_name">EBook</string>
+    <string name="main_title">追书神器</string>
+
+    <string name="tab_name_left">书架</string>
+    <string name="tab_name_right">书城</string>
+
 </resources>
