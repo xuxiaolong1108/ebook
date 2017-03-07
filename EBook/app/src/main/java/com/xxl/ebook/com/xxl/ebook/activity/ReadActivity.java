@@ -53,7 +53,5 @@ public class ReadActivity extends AppCompatActivity {
         }
         Log.i(TAG, sdCardPath);
         Log.i(TAG, stringValue);
-
-
     }
 }
