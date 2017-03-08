@@ -14,45 +14,50 @@ public class MainActivity extends AppCompatActivity {
 
     private RadioGroup rg_main;
     FragmentManager fragmentManager;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-        init();
+
         initViews();
+        ininData();
         initEvent();
     }
 
-    private void init() {
+
+    private void initViews() {
         rg_main = ((RadioGroup) findViewById(R.id.rg_mian));
     }
 
-    private void initViews() {
-        fragmentManager =getFragmentManager();
+    private void ininData() {
+        fragmentManager = getFragmentManager();
         showFragment(new ShelfFragment());
+
     }
+
 
     private void initEvent() {
         rg_main.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int i) {
-                    switch (i){
-                        case R.id.rb_main_left:
-                            showFragment(new ShelfFragment());
-                            break;
-                        case R.id.rb_main_right:
-                            showFragment(new BookFragment());
-                            break;
-                        default:
-                            break;
+                switch (i) {
+                    case R.id.rb_main_left:
+                        showFragment(new ShelfFragment());
+                        break;
+                    case R.id.rb_main_right:
+                        showFragment(new BookFragment());
+                        break;
+                    default:
+                        break;
 
-                    }
+                }
             }
         });
     }
 
-    public void showFragment(Fragment fragment){
-        FragmentTransaction fragmentTransaction =fragmentManager.beginTransaction();
-        fragmentTransaction.replace(R.id.fl_main,fragment).commit();
+    public void showFragment(Fragment fragment) {
+        FragmentTransaction fragmentTransaction = fragmentManager.beginTransaction();
+        fragmentTransaction.replace(R.id.fl_main, fragment).commit();
     }
 }
