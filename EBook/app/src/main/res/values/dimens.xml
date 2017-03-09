@@ -10,5 +10,9 @@
 
     <dimen name="drawer_width">120dp</dimen>
 
+    <dimen name="textSize">18sp</dimen>
+    <dimen name="txt_top">20dp</dimen>
+    <dimen name="txt_bottom">20dp</dimen>
+
 
 </resources>

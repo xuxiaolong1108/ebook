@@ -35,7 +35,7 @@ public class BookPageAdapter extends PagerAdapter {
     }
 
     private void initBook() {
-        bookFactory = new BookFactory(file, 5);
+        bookFactory = new BookFactory(file);
         bookFactory.initBook();
         this.totalPages = bookFactory.getBookPages();
     }

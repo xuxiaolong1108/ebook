@@ -17,7 +17,7 @@ public class BookFactory {
     private RandomAccessFile readFile;
     private File file;
     //构造方法 传入当前页 为了实现书签的功能 记录用户读取的文章位置
-    public BookFactory(File file, int currentpage) {
+    public BookFactory(File file) {
         this.file = file;
         this.currentpage = currentpage;
 
@@ -39,7 +39,8 @@ public class BookFactory {
 
     public String getBookString(int currentpage){
         seek(currentpage);
-        return  read();
+        String text =read();
+        return text.trim().substring(2,text.length()-2);
     }
 
 
@@ -48,7 +49,6 @@ public class BookFactory {
     //定位字节位置 根据页数定位文本的位置
     private void seek(long page) {
         try {
-            //if(pages)
             readFile.seek(page * SIZE);
         } catch (IOException e) {
             e.printStackTrace();
@@ -67,7 +67,7 @@ public class BookFactory {
 
     private String read() {
         //内容重叠防止 末尾字节乱码
-        byte[] chs = new byte[SIZE];
+        byte[] chs = new byte[SIZE+8];
         try {
 
             readFile.read(chs);

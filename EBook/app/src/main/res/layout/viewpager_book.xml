@@ -3,10 +3,14 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
     <TextView
+
         android:id="@+id/tv_viewPager"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:text="zxcvbnm,"
+        android:textSize="@dimen/textSize"
+        android:layout_marginTop="@dimen/txt_top"
+        android:layout_marginBottom="@dimen/txt_bottom"
+        android:gravity="center"
         />
 
 </RelativeLayout>
