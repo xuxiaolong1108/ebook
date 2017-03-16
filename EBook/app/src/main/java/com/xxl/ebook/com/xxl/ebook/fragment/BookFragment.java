@@ -12,7 +12,7 @@ import android.widget.Button;
 import android.widget.Toast;
 
 import com.xxl.ebook.R;
-import com.xxl.ebook.com.xxl.ebook.common.Constant;
+import com.xxl.ebook.com.xxl.ebook.utils.Constant;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;

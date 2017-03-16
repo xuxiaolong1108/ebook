@@ -1,4 +1,4 @@
-package com.xxl.ebook.com.xxl.ebook.common;
+package com.xxl.ebook.com.xxl.ebook.utils;
 
 /**
  * Created by xuxiaolong on 2017/3/9.
