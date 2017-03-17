@@ -21,6 +21,15 @@
                 android:layout_height="wrap_content"
                 android:text="@string/main_title"
                 />
+            <ImageView
+                android:id="@+id/iv_main_cehua"
+                android:layout_width="30dp"
+                android:layout_height="30dp"
+                android:layout_alignParentLeft="true"
+                android:src="@drawable/cehua"
+                android:layout_centerInParent="true"
+                android:layout_marginLeft="10dp"
+                />
         </RelativeLayout>
         <RelativeLayout
             android:layout_below="@id/rl_main_title"
@@ -32,16 +41,20 @@
                 android:orientation="horizontal"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent">
+
                 <RadioButton
 
                     android:id="@+id/rb_main_left"
                     style="@style/radioBtnStyle"
                     android:text="@string/tab_name_left"
+                    android:drawableLeft="@drawable/radbtntab_drawable_selector"
                     />
+
                 <RadioButton
                     android:id="@+id/rb_main_right"
                     style="@style/radioBtnStyle"
-                    android:text="@string/tab_name_right"/>
+                    android:text="@string/tab_name_right"
+                    android:drawableLeft="@drawable/radbtntab_drawable2_selector"/>
 
             </RadioGroup>
 

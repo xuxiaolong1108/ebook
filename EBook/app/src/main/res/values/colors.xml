@@ -5,4 +5,8 @@
     <color name="colorAccent">#FF4081</color>
     <color name="titleTextColor">#ffffff</color>
     <color name="mainColor">#ff0000</color>
+
+    <color name="color1">#8a8a8a</color>
+    <color name="color2">#EE4000</color>
+
 </resources>

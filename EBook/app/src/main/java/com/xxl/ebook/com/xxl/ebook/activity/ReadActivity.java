@@ -12,7 +12,6 @@ import com.xxl.ebook.com.xxl.ebook.adapter.BookPageAdapter;
 import java.io.File;
 public class ReadActivity extends AppCompatActivity {
     private static final String TAG = ReadActivity.class.getSimpleName();
-    String sdCardPath = Environment.getExternalStorageDirectory().getPath();
     private ViewPager vp_read;
     File file;
 
@@ -20,7 +19,9 @@ public class ReadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
-         file = new File(sdCardPath + "//" + "sanguo.txt");
+        Bundle bundle =getIntent().getExtras();
+        String bookPath =bundle.getString("bookPath");
+         file = new File(bookPath);
         initView();
         initData();
         initEvent();

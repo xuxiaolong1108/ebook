@@ -14,5 +14,10 @@
     <dimen name="txt_top">20dp</dimen>
     <dimen name="txt_bottom">20dp</dimen>
 
+    <dimen name="commonheight">48dp</dimen>
+
+    <dimen name="commonwidth">48dp</dimen>
+
+
 
 </resources>
