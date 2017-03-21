@@ -97,7 +97,7 @@
                     android:background="#ffffff"
                     android:layout_below="@id/rl_city_lv"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp">
+                    android:layout_height="wrap_content">
 
                     <RelativeLayout
                         android:id="@+id/rl_city_cate"
@@ -120,6 +120,7 @@
 
                     </RelativeLayout>
                     <LinearLayout
+                        android:id="@+id/ll_city_cate1"
                         android:layout_below="@id/rl_city_cate"
                         android:orientation="horizontal"
                         android:layout_marginLeft="10dp"
@@ -127,25 +128,47 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp">
                         <Button
-                            android:background="@drawable/btn1_shape"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"/>
+                            android:id="@+id/btn_city_xuanhuan"
+                           style="@style/cateBtnStyle"
+                            android:text="玄幻"
+                            />
                         <Button
-                            android:background="@drawable/btn1_shape"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"/>
+                            android:id="@+id/btn_city_chuanyue"
+                            style="@style/cateBtnStyle"
+                            android:text="穿越"
+                            />
                         <Button
-                            android:background="@drawable/btn1_shape"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"/>
+                            style="@style/cateBtnStyle"
+                            android:text="言情"
+                            />
                         <Button
-                            android:background="@drawable/btn1_shape"
-                            android:layout_width="0dp"
-                            android:layout_height="match_parent"
-                            android:layout_weight="1"/>
+                            style="@style/cateBtnStyle"
+                            android:text="武侠"/>
+
+                    </LinearLayout>
+                    <LinearLayout
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_marginTop="2dp"
+                        android:layout_below="@id/ll_city_cate1"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+                        <Button
+                            style="@style/cateBtnStyle"
+                            android:text="都市"
+                            />
+                        <Button
+                            style="@style/cateBtnStyle"
+                            android:text="异界"
+                            />
+                        <Button
+                            style="@style/cateBtnStyle"
+                            android:text="校园"
+                            />
+                        <Button
+                            style="@style/cateBtnStyle"
+                            android:text="热血"/>
 
                     </LinearLayout>
 

@@ -10,6 +10,7 @@ import com.xxl.ebook.R;
 import com.xxl.ebook.com.xxl.ebook.adapter.BookPageAdapter;
 
 import java.io.File;
+
 public class ReadActivity extends AppCompatActivity {
     private static final String TAG = ReadActivity.class.getSimpleName();
     private ViewPager vp_read;
@@ -19,9 +20,9 @@ public class ReadActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
-        Bundle bundle =getIntent().getExtras();
-        String bookPath =bundle.getString("bookPath");
-         file = new File(bookPath);
+        Bundle bundle = getIntent().getExtras();
+        String bookPath = bundle.getString("bookPath");
+        file = new File(bookPath);
         initView();
         initData();
         initEvent();
@@ -32,7 +33,7 @@ public class ReadActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        BookPageAdapter bookPageAdapter =new BookPageAdapter(file,getApplicationContext());
+        BookPageAdapter bookPageAdapter = new BookPageAdapter(file, getApplicationContext());
         vp_read.setAdapter(bookPageAdapter);
     }
 

@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.xxl.ebook.R;
 import com.xxl.ebook.com.xxl.ebook.utils.Constant;
+import com.xxl.ebook.com.xxl.ebook.utils.EUtils;
 
 import org.xutils.common.Callback;
 import org.xutils.http.RequestParams;
@@ -26,6 +27,8 @@ import java.io.File;
 
 public class BookFragment extends Fragment {
     View view = null;
+    private Button btn_city_xuanhuan;
+    private Button btn_city_chuanyue;
 
 
     @Nullable
@@ -39,12 +42,28 @@ public class BookFragment extends Fragment {
         return view;
     }
 
-    private void initView() {}
+    private void initView() {
+        btn_city_xuanhuan = ((Button) view.findViewById(R.id.btn_city_xuanhuan));
+        btn_city_chuanyue = ((Button) view.findViewById(R.id.btn_city_chuanyue));
+    }
 
     private void initData() {
     }
 
     private void initEvent() {
+        btn_city_xuanhuan.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EUtils.showProgressBar(getActivity());
+            }
+        });
+        btn_city_chuanyue.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                EUtils.closeProgressBar();
+            }
+        });
+
     }
 
 }
