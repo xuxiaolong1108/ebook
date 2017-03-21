@@ -2,6 +2,7 @@
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="#30808080"
     >
     <RelativeLayout
         android:layout_width="match_parent"
@@ -12,6 +13,7 @@
             android:layout_width="match_parent"
             android:layout_height="2dp"/>
         <RelativeLayout
+            android:id="@+id/rl_city_search"
             android:background="#30808080"
             android:layout_below="@id/view_bookcity"
             android:layout_width="match_parent"
@@ -42,6 +44,119 @@
                 />
 
         </RelativeLayout>
+        <ScrollView
+            android:layout_below="@id/rl_city_search"
+
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <RelativeLayout
+                    android:id="@+id/rl_city_panghang"
+                    android:layout_width="match_parent"
+                    android:layout_height="30dp"
+                    android:background="#ffffff"
+                    >
+                    <ImageView
+                        android:layout_marginLeft="10dp"
+                        android:layout_width="25dp"
+                        android:layout_height="25dp"
+                        android:layout_centerVertical="true"
+                        android:src="@drawable/panghangbang"/>
+                    <TextView
+                        android:layout_marginLeft="50dp"
+                        android:layout_centerVertical="true"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:text="书籍排行榜"
+                        android:textColor="#000000"
+                        />
+
+
+                </RelativeLayout>
+                <RelativeLayout
+                    android:id="@+id/rl_city_lv"
+                    android:layout_below="@id/rl_city_panghang"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:background="#ffffff"
+                    android:layout_marginTop="1dp">
+                    <com.xxl.ebook.com.xxl.ebook.weight.NoScrollListView
+                        android:id="@+id/lv_city_paihang"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+
+                    </com.xxl.ebook.com.xxl.ebook.weight.NoScrollListView>
+
+                </RelativeLayout>
+
+                <RelativeLayout
+                    android:background="#ffffff"
+                    android:layout_below="@id/rl_city_lv"
+                    android:layout_width="match_parent"
+                    android:layout_height="100dp">
+
+                    <RelativeLayout
+                        android:id="@+id/rl_city_cate"
+                        android:layout_width="match_parent"
+                        android:layout_height="30dp">
+                        <ImageView
+                            android:layout_centerVertical="true"
+                            android:src="@drawable/cate"
+                            android:layout_marginLeft="10dp"
+                            android:layout_width="25dp"
+                            android:layout_height="25dp"
+                            />
+                        <TextView
+                            android:textColor="#000000"
+                            android:layout_marginLeft="50dp"
+                            android:layout_centerVertical="true"
+                            android:text="书籍分类"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content" />
+
+                    </RelativeLayout>
+                    <LinearLayout
+                        android:layout_below="@id/rl_city_cate"
+                        android:orientation="horizontal"
+                        android:layout_marginLeft="10dp"
+                        android:layout_marginRight="10dp"
+                        android:layout_width="match_parent"
+                        android:layout_height="40dp">
+                        <Button
+                            android:background="@drawable/btn1_shape"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:background="@drawable/btn1_shape"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:background="@drawable/btn1_shape"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+                        <Button
+                            android:background="@drawable/btn1_shape"
+                            android:layout_width="0dp"
+                            android:layout_height="match_parent"
+                            android:layout_weight="1"/>
+
+                    </LinearLayout>
+
+                </RelativeLayout>
+
+            </RelativeLayout>
+
+
+        </ScrollView>
+
+
 
     </RelativeLayout>
 </RelativeLayout>
