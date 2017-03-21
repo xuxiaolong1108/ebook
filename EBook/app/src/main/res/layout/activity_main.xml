@@ -71,9 +71,14 @@
         android:layout_width="@dimen/drawer_width"
         android:layout_height="match_parent"
         android:layout_gravity="start"
-        android:background="@color/colorPrimary"
+        android:background="@color/color3"
         android:orientation="vertical" >
-
+        <ListView
+            android:layout_marginTop="50dp"
+            android:id="@+id/lv_main_cehua"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+        </ListView>
     </LinearLayout>
 </android.support.v4.widget.DrawerLayout>
 

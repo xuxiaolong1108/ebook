@@ -9,11 +9,18 @@ import android.os.Bundle;
 import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
+import android.widget.SimpleAdapter;
 
 import com.xxl.ebook.com.xxl.ebook.fragment.BookFragment;
 import com.xxl.ebook.com.xxl.ebook.fragment.ShelfFragment;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
+import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
 
@@ -22,6 +29,7 @@ public class MainActivity extends AppCompatActivity {
     private RadioButton rb_main_left;
     private DrawerLayout id_main;
     private ImageView iv_main_cehua;
+    private ListView lv_main_cehua;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -39,13 +47,24 @@ public class MainActivity extends AppCompatActivity {
         rb_main_left = ((RadioButton) findViewById(R.id.rb_main_left));
         id_main = ((DrawerLayout) findViewById(R.id.id_main));
         iv_main_cehua = ((ImageView) findViewById(R.id.iv_main_cehua));
+        lv_main_cehua = ((ListView) findViewById(R.id.lv_main_cehua));
     }
 
     private void ininData() {
         rb_main_left.setChecked(true);
         fragmentManager = getFragmentManager();
         showFragment(new ShelfFragment());
-
+        String[] titles ={"我的","设置"};
+        int[] titleImg = {R.drawable.home,R.drawable.settings};
+        List<Map<String,Object>> list =new ArrayList<Map<String,Object>>();
+        for(int i=0;i<titles.length;i++){
+            Map<String,Object> map =new HashMap<String,Object>();
+            map.put("title",titles[i]);
+            map.put("titleImg",titleImg[i]);
+            list.add(map);
+        }
+        SimpleAdapter simpleAdapter =new SimpleAdapter(getApplicationContext(),list,R.layout.cehua_item_layout,new String[] {"titleImg","title"},new int[]{R.id.iv_cehua_pic,R.id.tv_cehua_title});
+        lv_main_cehua.setAdapter(simpleAdapter);
     }
 
 
