@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.xxl.ebook.R;
 import com.xxl.ebook.com.xxl.ebook.pojo.BookNameBean;
+import com.xxl.ebook.com.xxl.ebook.utils.ELog;
 
 import java.util.List;
 
@@ -28,7 +29,7 @@ public class ListAdapter extends BaseAdapter {
     public ListAdapter(Context context,List list){
         this.context =context;
         this.list =list;
-        Log.i(TAG,"长度"+list.size());
+        ELog.i(TAG,"长度"+list.size());
     }
     @Override
     public int getCount() {

@@ -11,5 +11,33 @@
         android:layout_height="match_parent"
         >
     </android.support.v4.view.ViewPager>
+    <Button
+        android:layout_marginTop="100dp"
+        android:id="@+id/test_show"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test_show"/>
+    <Button
+        android:layout_below="@id/test_show"
+        android:id="@+id/test_hide"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="test_hide"/>
+    <RelativeLayout
+        android:id="@+id/rl_city_titlebar"
+        android:layout_alignParentTop="true"
+        android:background="#ff0000"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:id="@+id/rl_city_bottombar"
+        android:layout_alignParentBottom="true"
+        android:gravity="bottom"
+        android:background="#00ff00"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+    </RelativeLayout>
 
 </RelativeLayout>
