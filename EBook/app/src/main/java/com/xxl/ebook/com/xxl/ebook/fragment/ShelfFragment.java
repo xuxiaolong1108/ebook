@@ -4,6 +4,8 @@ import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.database.Cursor;
+import android.database.sqlite.SQLiteDatabase;
 import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
@@ -52,17 +54,18 @@ public class ShelfFragment extends Fragment {
 
     private void getTxtFiles() {
         //第一次打开app检索sd卡中txt文件
-        ELog.i(TAG,"第一次检索sdk");
+        ELog.i(TAG, "第一次检索sdk");
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("FirstStart", Context.MODE_PRIVATE);
-        boolean isFirst = sharedPreferences.getBoolean("IsFirst",true);
-        if(isFirst){
-            ELog.i(TAG,"第一次打开");
+        boolean isFirst = sharedPreferences.getBoolean("IsFirst", true);
+        ESqLite eSqLite = new ESqLite(getActivity());
+        SQLiteDatabase db = eSqLite.getWritableDatabase();
+        if (isFirst) {
+            ELog.i(TAG, "第一次打开");
             SharedPreferences.Editor editor = sharedPreferences.edit();
-            editor.putBoolean("IsFirst",false);
+            editor.putBoolean("IsFirst", false);
             editor.commit();
             //电子书写入sqlite
-            ESqLite eSqLite =new ESqLite(getActivity());
-            eSqLite.getWritableDatabase();
+
             File[] files = sdCardFile.listFiles();
             for (int i = 0; i < files.length; i++) {
                 if (!files[i].isDirectory()) {
@@ -71,13 +74,36 @@ public class ShelfFragment extends Fragment {
                         files[i].getAbsolutePath();
                         files[i].length();
                         ELog.i(TAG, "name:" + files[i].getName() + "--path:" + files[i].getAbsolutePath());
-                        String sql = "insert into bookshelf (bookname,bookauthor,bookaddress,imgaddress,booksize) " +
-                                "values()";
+                        String sql = "insert into bookshelf (bookname,bookauthor,bookaddress,imgaddress,booksize) " + "values("
+                                + "'" + files[i].getName() + "'" + ","
+                                + "'" + "" + "'" + ","
+                                + "'" + files[i].getAbsolutePath() + "'" + ","
+                                + "'" + "" + "'" + ","
+                                + "'" + files[i].length() + "'" + ")";
+                        db.execSQL(sql);
+                        ELog.i(TAG,sql);
                     }
                 }
             }
-        }else{
-            ELog.i(TAG,"不是第一次打开");
+            BookNameBean bookNameBean = null;
+
+            Cursor cursor = db.rawQuery("select * from bookshelf", null);
+            while (cursor.moveToNext()) {
+                bookNameBean = new BookNameBean();
+                bookNameBean.bookName = cursor.getString(1);
+                bookNameBean.bookPath = cursor.getString(3);
+                filePathList.add(bookNameBean);
+            }
+        } else {
+            BookNameBean bookNameBean = null;
+            ELog.i(TAG, "不是第一次打开");
+            Cursor cursor = db.rawQuery("select * from bookshelf", null);
+            while (cursor.moveToNext()) {
+                bookNameBean = new BookNameBean();
+                bookNameBean.bookName = cursor.getString(1);
+                bookNameBean.bookPath = cursor.getString(3);
+                filePathList.add(bookNameBean);
+            }
         }
 
     }
@@ -94,9 +120,9 @@ public class ShelfFragment extends Fragment {
         lv_shelf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-                Bundle bundle =new Bundle();
-                bundle.putString("bookPath",filePathList.get(i).bookPath);
-                Intent intent =new Intent(getActivity(),ReadActivity.class);
+                Bundle bundle = new Bundle();
+                bundle.putString("bookPath", filePathList.get(i).bookPath);
+                Intent intent = new Intent(getActivity(), ReadActivity.class);
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
             }

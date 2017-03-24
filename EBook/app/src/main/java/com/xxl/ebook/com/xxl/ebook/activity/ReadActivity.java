@@ -21,18 +21,18 @@ public class ReadActivity extends AppCompatActivity {
     private static final String TAG = ReadActivity.class.getSimpleName();
     private ViewPager vp_read;
     File file;
-    private Button test_show;
-    private Button test_hide;
+
     private RelativeLayout rl_city_titlebar;
     private RelativeLayout rl_city_bottombar;
+    private boolean isShow = false;
+    private RelativeLayout rl_city_touch;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_read);
-       // Bundle bundle = getIntent().getExtras();
-      //  String bookPath = bundle.getString("bookPath");
-        String bookPath = Environment.getExternalStorageDirectory().getPath()+"/sanguo.txt";
+         Bundle bundle = getIntent().getExtras();
+        String bookPath = bundle.getString("bookPath");
         file = new File(bookPath);
         initView();
         initData();
@@ -42,10 +42,9 @@ public class ReadActivity extends AppCompatActivity {
     private void initView() {
         vp_read = ((ViewPager) findViewById(R.id.vp_read));
 
-        test_show = ((Button) findViewById(R.id.test_show));
-        test_hide = ((Button) findViewById(R.id.test_hide));
         rl_city_titlebar = ((RelativeLayout) findViewById(R.id.rl_city_titlebar));
         rl_city_bottombar = ((RelativeLayout) findViewById(R.id.rl_city_bottombar));
+        rl_city_touch = ((RelativeLayout) findViewById(R.id.rl_city_touch));
     }
 
     private void initData() {
@@ -53,31 +52,45 @@ public class ReadActivity extends AppCompatActivity {
         vp_read.setAdapter(bookPageAdapter);
         rl_city_titlebar.setVisibility(View.GONE);
         rl_city_bottombar.setVisibility(View.GONE);
+        isShow = false;
     }
 
     private void initEvent() {
-        test_show.setOnClickListener(new View.OnClickListener() {
+        rl_city_touch.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                rl_city_titlebar.setVisibility(View.VISIBLE);
-                rl_city_titlebar.setAnimation(AnimUtils.MoveToBottomForShow());
-                rl_city_bottombar.setVisibility(View.VISIBLE);
-                rl_city_bottombar.setAnimation(AnimUtils.MoveToTopForShow());
-
-
+                if (isShow) {
+                    rl_city_titlebar.setVisibility(View.GONE);
+                    rl_city_titlebar.setAnimation(AnimUtils.MoveToTopForHide());
+                    rl_city_bottombar.setVisibility(View.GONE);
+                    rl_city_bottombar.setAnimation(AnimUtils.MoveToBottomForHide());
+                    isShow = false;
+                } else {
+                    rl_city_titlebar.setVisibility(View.VISIBLE);
+                    rl_city_titlebar.setAnimation(AnimUtils.MoveToBottomForShow());
+                    rl_city_bottombar.setVisibility(View.VISIBLE);
+                    rl_city_bottombar.setAnimation(AnimUtils.MoveToTopForShow());
+                    isShow = true;
+                }
             }
         });
-        test_hide.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                rl_city_titlebar.setVisibility(View.GONE);
-                rl_city_titlebar.setAnimation(AnimUtils.MoveToTopForHide());
-                rl_city_bottombar.setVisibility(View.GONE);
-                rl_city_bottombar.setAnimation(AnimUtils.MoveToBottomForHide());
-            }
-        });
-        
-
     }
 
+    @Override
+    public boolean dispatchTouchEvent(MotionEvent ev) {
+        switch (ev.getAction()) {
+            case MotionEvent.ACTION_DOWN:
+                ELog.i(TAG, "点击");
+                break;
+            case MotionEvent.ACTION_UP:
+                ELog.i(TAG, "释放");
+                break;
+            case MotionEvent.ACTION_MOVE:
+                ELog.i(TAG, "滑动");
+                break;
+            default:
+                break;
+        }
+        return super.dispatchTouchEvent(ev);
+    }
 }

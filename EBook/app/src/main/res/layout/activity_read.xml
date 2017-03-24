@@ -11,18 +11,7 @@
         android:layout_height="match_parent"
         >
     </android.support.v4.view.ViewPager>
-    <Button
-        android:layout_marginTop="100dp"
-        android:id="@+id/test_show"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test_show"/>
-    <Button
-        android:layout_below="@id/test_show"
-        android:id="@+id/test_hide"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="test_hide"/>
+
     <RelativeLayout
         android:id="@+id/rl_city_titlebar"
         android:layout_alignParentTop="true"
@@ -39,5 +28,38 @@
         android:layout_width="match_parent"
         android:layout_height="48dp">
     </RelativeLayout>
+    <LinearLayout
+        android:layout_below="@id/rl_city_titlebar"
+        android:layout_above="@id/rl_city_bottombar"
+        android:orientation="horizontal"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+        <RelativeLayout
+            android:id="@+id/rl_city_touchleft"
+            android:layout_centerInParent="true"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_city_touch"
+            android:layout_centerInParent="true"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </RelativeLayout>
+        <RelativeLayout
+            android:id="@+id/rl_city_touchright"
+            android:layout_centerInParent="true"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1">
+
+        </RelativeLayout>
+    </LinearLayout>
+
+
 
 </RelativeLayout>
