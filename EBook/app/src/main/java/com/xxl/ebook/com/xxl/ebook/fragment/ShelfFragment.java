@@ -1,5 +1,6 @@
 package com.xxl.ebook.com.xxl.ebook.fragment;
 
+import android.app.Dialog;
 import android.app.Fragment;
 import android.content.Context;
 import android.content.Intent;
@@ -10,12 +11,15 @@ import android.os.Bundle;
 import android.os.Environment;
 import android.support.annotation.Nullable;
 import android.util.Log;
+import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.Window;
 import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
 import com.xxl.ebook.R;
@@ -39,6 +43,9 @@ public class ShelfFragment extends Fragment {
     File sdCardFile = Environment.getExternalStorageDirectory();
     List<BookNameBean> filePathList = new ArrayList<BookNameBean>();
     private ListView lv_shelf;
+    Dialog dialog;
+    private int currentBook;
+    private ListAdapter listAdapter;
 
     @Nullable
     @Override
@@ -54,13 +61,12 @@ public class ShelfFragment extends Fragment {
 
     private void getTxtFiles() {
         //第一次打开app检索sd卡中txt文件
-        ELog.i(TAG, "第一次检索sdk");
         SharedPreferences sharedPreferences = getActivity().getSharedPreferences("FirstStart", Context.MODE_PRIVATE);
         boolean isFirst = sharedPreferences.getBoolean("IsFirst", true);
         ESqLite eSqLite = new ESqLite(getActivity());
         SQLiteDatabase db = eSqLite.getWritableDatabase();
         if (isFirst) {
-            ELog.i(TAG, "第一次打开");
+            ELog.i(TAG, "第一次打开检索sd卡");
             SharedPreferences.Editor editor = sharedPreferences.edit();
             editor.putBoolean("IsFirst", false);
             editor.commit();
@@ -81,7 +87,7 @@ public class ShelfFragment extends Fragment {
                                 + "'" + "" + "'" + ","
                                 + "'" + files[i].length() + "'" + ")";
                         db.execSQL(sql);
-                        ELog.i(TAG,sql);
+                        ELog.i(TAG, sql);
                     }
                 }
             }
@@ -90,21 +96,32 @@ public class ShelfFragment extends Fragment {
             Cursor cursor = db.rawQuery("select * from bookshelf", null);
             while (cursor.moveToNext()) {
                 bookNameBean = new BookNameBean();
+                bookNameBean.id =cursor.getInt(0);
                 bookNameBean.bookName = cursor.getString(1);
+                bookNameBean.bookAuthor = cursor.getString(2);
                 bookNameBean.bookPath = cursor.getString(3);
+                bookNameBean.bookPic = cursor.getString(4);
+                bookNameBean.bookSize = cursor.getString(5);
                 filePathList.add(bookNameBean);
             }
+
         } else {
             BookNameBean bookNameBean = null;
             ELog.i(TAG, "不是第一次打开");
             Cursor cursor = db.rawQuery("select * from bookshelf", null);
             while (cursor.moveToNext()) {
                 bookNameBean = new BookNameBean();
+                bookNameBean.id =cursor.getInt(0);
                 bookNameBean.bookName = cursor.getString(1);
+                bookNameBean.bookAuthor = cursor.getString(2);
                 bookNameBean.bookPath = cursor.getString(3);
+                bookNameBean.bookPic = cursor.getString(4);
+                bookNameBean.bookSize = cursor.getString(5);
                 filePathList.add(bookNameBean);
             }
         }
+        db.close();
+        eSqLite.close();
 
     }
 
@@ -113,20 +130,88 @@ public class ShelfFragment extends Fragment {
     }
 
     private void initData() {
-        lv_shelf.setAdapter(new ListAdapter(getActivity(), filePathList));
+        listAdapter =new ListAdapter(getActivity(), filePathList);
+        lv_shelf.setAdapter(listAdapter);
+
     }
 
     private void initEvent() {
         lv_shelf.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+                currentBook = i;
+                toShowDialog();
+            }
+        });
+
+    }
+
+
+    private void toShowDialog() {
+        dialog = new Dialog(getActivity(), R.style.dialogStyle);
+        View view = View.inflate(getActivity(), R.layout.read_delete_layout, null);
+        initDialogEvent(view);
+        dialog.setContentView(view);
+        dialog.setCanceledOnTouchOutside(false);
+        Window window = dialog.getWindow();
+        window.setGravity(Gravity.BOTTOM);
+        window.setWindowAnimations(R.style.dialoginoutStyle);
+        dialog.show();
+    }
+
+    private void toCloseDialog() {
+        if (null != dialog) {
+            dialog.dismiss();
+        }
+
+    }
+
+    private void initDialogEvent(View view) {
+        RelativeLayout rl_dialog_one = ((RelativeLayout) view.findViewById(R.id.rl_dialog_one));
+        RelativeLayout rl_dialog_two = ((RelativeLayout) view.findViewById(R.id.rl_dialog_two));
+        RelativeLayout rl_dialog_three = ((RelativeLayout) view.findViewById(R.id.rl_dialog_three));
+        rl_dialog_one.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toCloseDialog();
                 Bundle bundle = new Bundle();
-                bundle.putString("bookPath", filePathList.get(i).bookPath);
+                bundle.putString("bookPath", filePathList.get(currentBook).bookPath);
                 Intent intent = new Intent(getActivity(), ReadActivity.class);
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);
             }
         });
-
+        rl_dialog_two.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                //删除数据库对应书籍
+                ESqLite eSqLite = new ESqLite(getActivity());
+                SQLiteDatabase db = eSqLite.getWritableDatabase();
+                db.execSQL("delete from bookshelf where id= "+filePathList.get(currentBook).id);
+                filePathList.clear();
+                BookNameBean bookNameBean = null;
+                Cursor cursor = db.rawQuery("select * from bookshelf", null);
+                while (cursor.moveToNext()) {
+                    bookNameBean = new BookNameBean();
+                    bookNameBean.id =cursor.getInt(0);
+                    bookNameBean.bookName = cursor.getString(1);
+                    bookNameBean.bookAuthor = cursor.getString(2);
+                    bookNameBean.bookPath = cursor.getString(3);
+                    bookNameBean.bookPic = cursor.getString(4);
+                    bookNameBean.bookSize = cursor.getString(5);
+                    filePathList.add(bookNameBean);
+                }
+                db.close();
+                eSqLite.close();
+                toCloseDialog();
+                listAdapter.notifyDataSetChanged();
+            }
+        });
+        rl_dialog_three.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                toCloseDialog();
+            }
+        });
     }
 }

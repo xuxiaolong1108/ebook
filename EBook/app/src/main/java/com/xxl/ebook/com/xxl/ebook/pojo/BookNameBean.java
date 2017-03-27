@@ -5,7 +5,10 @@ package com.xxl.ebook.com.xxl.ebook.pojo;
  */
 
 public class BookNameBean {
+    public int id;
     public String bookName;
+    public String bookAuthor;
     public String bookPath;
-    public String picturePath;
+    public String bookPic;
+    public String bookSize;
 }

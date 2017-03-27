@@ -1,5 +1,6 @@
 package com.xxl.ebook.com.xxl.ebook.activity;
 
+import android.content.Intent;
 import android.os.Environment;
 import android.support.v4.view.ViewPager;
 import android.support.v7.app.AppCompatActivity;
@@ -8,6 +9,7 @@ import android.view.MotionEvent;
 import android.view.View;
 import android.widget.Button;
 import android.widget.RelativeLayout;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.xxl.ebook.R;
@@ -26,6 +28,7 @@ public class ReadActivity extends AppCompatActivity {
     private RelativeLayout rl_city_bottombar;
     private boolean isShow = false;
     private RelativeLayout rl_city_touch;
+    private TextView tv_read_list;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +48,7 @@ public class ReadActivity extends AppCompatActivity {
         rl_city_titlebar = ((RelativeLayout) findViewById(R.id.rl_city_titlebar));
         rl_city_bottombar = ((RelativeLayout) findViewById(R.id.rl_city_bottombar));
         rl_city_touch = ((RelativeLayout) findViewById(R.id.rl_city_touch));
+        tv_read_list = ((TextView) findViewById(R.id.tv_read_list));
     }
 
     private void initData() {
@@ -72,6 +76,14 @@ public class ReadActivity extends AppCompatActivity {
                     rl_city_bottombar.setAnimation(AnimUtils.MoveToTopForShow());
                     isShow = true;
                 }
+            }
+        });
+
+        tv_read_list.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Intent intent =new Intent(getApplicationContext(),ListActivity.class);
+                startActivity(intent);
             }
         });
     }

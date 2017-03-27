@@ -12,6 +12,8 @@ import com.xxl.ebook.R;
 import com.xxl.ebook.com.xxl.ebook.pojo.BookNameBean;
 import com.xxl.ebook.com.xxl.ebook.utils.ELog;
 
+import org.xutils.x;
+
 import java.util.List;
 
 /**

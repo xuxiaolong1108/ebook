@@ -15,16 +15,33 @@
     <RelativeLayout
         android:id="@+id/rl_city_titlebar"
         android:layout_alignParentTop="true"
-        android:background="#ff0000"
+        android:background="#808080"
         android:layout_width="match_parent"
         android:layout_height="48dp">
+        <TextView
+            android:id="@+id/tv_read_list"
+            android:layout_marginLeft="10dp"
+            android:layout_centerVertical="true"
+            android:textSize="18sp"
+            android:textColor="#ffffff"
+            android:text="目录"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+        <ImageView
+            android:id="@+id/iv_read_close"
+            android:layout_marginRight="10dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_width="35dp"
+            android:layout_height="35dp"
+            android:src="@drawable/close"/>
 
     </RelativeLayout>
     <RelativeLayout
         android:id="@+id/rl_city_bottombar"
         android:layout_alignParentBottom="true"
         android:gravity="bottom"
-        android:background="#00ff00"
+        android:background="#808080"
         android:layout_width="match_parent"
         android:layout_height="48dp">
     </RelativeLayout>

@@ -1,0 +1,70 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content">
+    <RelativeLayout
+        android:background="@drawable/btn_white_shape"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:id="@+id/rl_dialog_one"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        >
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="开始阅读"
+            android:textSize="18sp"
+            android:textColor="#0000ff"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/btn_white_shape"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/rl_dialog_one"
+        android:id="@+id/rl_dialog_two"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="删除"
+            android:textSize="18sp"
+            android:textColor="#ff0000"
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="@drawable/btn_white_shape"
+        android:layout_marginRight="10dp"
+        android:layout_marginLeft="10dp"
+        android:layout_marginTop="3dp"
+        android:layout_below="@id/rl_dialog_two"
+        android:id="@+id/rl_dialog_three"
+        android:layout_width="match_parent"
+        android:layout_height="48dp"
+        >
+        <TextView
+            android:layout_centerInParent="true"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="取消"
+            android:textSize="18sp"
+            android:textColor="#808080"
+
+            />
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:layout_below="@id/rl_dialog_three"
+        android:layout_width="match_parent"
+        android:layout_height="4dp">
+
+    </RelativeLayout>
+
+</RelativeLayout>
