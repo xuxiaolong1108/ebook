@@ -43,26 +43,21 @@ public class BookList  {
         }
 
         String bookContent = sb.toString();
+        ELog.i("长度",bookContent.length()+"");
         List<String> list = new ArrayList<String>();
 
-        String  aa ="dad,dadad,dadad,dadasd,dads,aa";
-        String[] aas= aa.split(",");
-        ELog.i(TAG,aas.length+""+"长度");
-        String[] lists = bookContent.split("\n|\r|\r\n");
-
         //Pattern p = Pattern.compile("(^\\s*第)(.{1,9})[章节卷集部篇回](\\s*)(.*)(\n|\r|\r\n)");
-        Pattern p = Pattern.compile("(^\\s*第)(.{1,9})[章节卷集部篇回](\\s*)(.*)(\n|\r|\r\n)");
+        String rex = "[第](.{1,9})[章节卷集篇回](.{1,9})";
+        Pattern p = Pattern.compile(rex);
         Matcher matcher =null;
-
-        for(int i=0;i<lists.length;i++){
-            ELog.i(TAG,lists.length+"");
-            ELog.i(TAG ,lists[i]+"");
-            matcher= p.matcher(lists[i]);
+            matcher= p.matcher(bookContent);
             while (matcher.find()){
                 ELog.i(TAG,matcher.group()+""+"matcher.group()");
                 list.add(matcher.group());
             }
-        }
+
+        ELog.i("第字数",list.size()+"");
+
         return list;
     }
 }

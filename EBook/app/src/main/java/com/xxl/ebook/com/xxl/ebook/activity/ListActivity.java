@@ -14,7 +14,7 @@ import java.util.List;
 public class ListActivity extends AppCompatActivity {
 
     private ListView lv_list_list;
-    private List<String> list =new ArrayList<String>();
+    private List<String> list = new ArrayList<String>();
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,9 +30,9 @@ public class ListActivity extends AppCompatActivity {
     }
 
     private void initData() {
-        BookList bookList =new BookList();
+        BookList bookList = new BookList();
         list = bookList.getBookList();
-        BookListAdapter bookListAdapter =new BookListAdapter(getApplicationContext(),list);
+        BookListAdapter bookListAdapter = new BookListAdapter(getApplicationContext(), list);
         lv_list_list.setAdapter(bookListAdapter);
     }
 

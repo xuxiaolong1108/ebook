@@ -4,8 +4,32 @@
     android:id="@+id/activity_list"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context="com.xxl.ebook.com.xxl.ebook.activity.ListActivity">
+    tools:context="com.xxl.ebook.com.xxl.ebook.activity.ListActivity"
+    android:background="#ffffff">
+    <RelativeLayout
+        android:background="#808080"
+        android:id="@+id/rl_list_top"
+        android:layout_alignParentTop="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+
+    </RelativeLayout>
+    <RelativeLayout
+        android:background="#808080"
+        android:id="@+id/rl_list_bottom"
+        android:layout_alignParentBottom="true"
+        android:layout_width="match_parent"
+        android:layout_height="48dp">
+        <ImageView
+            android:layout_centerInParent="true"
+            android:layout_width="30dp"
+            android:layout_height="30dp"
+            android:src="@drawable/close2"/>
+
+    </RelativeLayout>
     <ListView
+        android:layout_below="@id/rl_list_top"
+        android:layout_above="@id/rl_list_bottom"
         android:id="@+id/lv_list_list"
         android:layout_width="match_parent"
         android:layout_height="match_parent">
