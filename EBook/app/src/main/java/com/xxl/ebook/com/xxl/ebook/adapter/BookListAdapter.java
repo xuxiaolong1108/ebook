@@ -7,6 +7,7 @@ import android.widget.BaseAdapter;
 import android.widget.TextView;
 
 import com.xxl.ebook.R;
+import com.xxl.ebook.com.xxl.ebook.pojo.TitleBean;
 
 import java.util.List;
 
@@ -16,7 +17,7 @@ import java.util.List;
 
 public class BookListAdapter extends BaseAdapter {
     private Context context;
-    private List list;
+    private List<TitleBean> list;
 
     private BookListAdapter(){
 
@@ -45,7 +46,7 @@ public class BookListAdapter extends BaseAdapter {
     public View getView(int i, View view, ViewGroup viewGroup) {
         View view1 =View.inflate(context, R.layout.book_list_item_layout,null);
         TextView  tv_list_item = ((TextView) view1.findViewById(R.id.tv_list_item));
-        tv_list_item.setText(list.get(i).toString());
+        tv_list_item.setText(list.get(i).titleName);
         return view1;
     }
 }

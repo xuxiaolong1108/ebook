@@ -6,5 +6,5 @@ package com.xxl.ebook.com.xxl.ebook.pojo;
 
 public class TitleBean {
     public String titleName;
-    public String titlePosition;
+    public int titlePosition;
 }
