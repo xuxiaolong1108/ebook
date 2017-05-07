@@ -11,6 +11,9 @@ import android.widget.Toast;
 
 import com.xxl.ebook.R;
 import com.xxl.ebook.com.xxl.ebook.common.BookFactory;
+import com.xxl.ebook.com.xxl.ebook.common.BookProduct;
+import com.xxl.ebook.com.xxl.ebook.utils.BookPostion;
+import com.xxl.ebook.com.xxl.ebook.utils.Constant;
 
 import java.io.File;
 
@@ -23,7 +26,7 @@ public class BookPageAdapter extends PagerAdapter {
     private File file;
     private int totalPages;
     private Context context;
-    BookFactory bookFactory;
+
 
     private BookPageAdapter() {
     }
@@ -35,9 +38,9 @@ public class BookPageAdapter extends PagerAdapter {
     }
 
     private void initBook() {
-        bookFactory = new BookFactory(file);
-        bookFactory.initBook();
-        this.totalPages = bookFactory.getBookPages();
+        BookProduct.INSTANCE.init(file);
+
+        this.totalPages = BookProduct.INSTANCE.getBookTotalPages();
     }
 
     @Override
@@ -59,8 +62,9 @@ public class BookPageAdapter extends PagerAdapter {
 
     @Override
     public Object instantiateItem(ViewGroup container, int position) {
+        BookPostion.currentPosition = position-1;
         View view = View.inflate(context, R.layout.viewpager_book, null);
-        String str = bookFactory.getBookString(position);
+        String str = BookProduct.INSTANCE.getBookContent((Constant.BOOKSIZE)*position);
         TextView tv_viewPager = ((TextView) view.findViewById(R.id.tv_viewPager));
         tv_viewPager.setText(str);
         container.addView(view);

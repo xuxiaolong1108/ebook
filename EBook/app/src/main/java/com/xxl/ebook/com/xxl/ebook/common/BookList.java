@@ -21,11 +21,12 @@ import java.util.regex.Pattern;
 public class BookList {
     private static final String TAG = BookList.class.getSimpleName();
 
-    public List getBookList() {
+    public List getBookList(String bookPath) {
         BufferedReader br = null;
         StringBuffer sb = null;
         try {
-            br = new BufferedReader(new FileReader(Environment.getExternalStorageDirectory().getAbsolutePath() + "/sanguo.txt"));
+            //br = new BufferedReader(new FileReader(Environment.getExternalStorageDirectory().getAbsolutePath() + "/wmsj.txt"));
+            br = new BufferedReader(new FileReader(bookPath));
             sb = new StringBuffer();
             String s;
             while ((s = br.readLine()) != null) {

@@ -176,6 +176,7 @@ public class ShelfFragment extends Fragment {
                 toCloseDialog();
                 Bundle bundle = new Bundle();
                 bundle.putString("bookPath", filePathList.get(currentBook).bookPath);
+                bundle.putString("bookName",filePathList.get(currentBook).bookName);
                 Intent intent = new Intent(getActivity(), ReadActivity.class);
                 intent.putExtras(bundle);
                 getActivity().startActivity(intent);

@@ -1,5 +1,7 @@
 package com.xxl.ebook.com.xxl.ebook.common;
 
+import com.xxl.ebook.com.xxl.ebook.utils.Constant;
+
 import java.io.File;
 import java.io.IOException;
 import java.io.RandomAccessFile;
@@ -11,7 +13,7 @@ import java.nio.charset.Charset;
 
 public class BookFactory {
     private int pages;//总页数
-    private final int SIZE = 900;//每一页的字节数 字节数固定
+    private final int SIZE = Constant.BOOKSIZE;//每一页的字节数 字节数固定
     private long bytescount;//字节总数
     private long currentpage;//当前页面
     private RandomAccessFile readFile;

@@ -138,10 +138,12 @@
                             android:text="穿越"
                             />
                         <Button
+                            android:id="@+id/btn_city_yanqing"
                             style="@style/cateBtnStyle"
                             android:text="言情"
                             />
                         <Button
+                            android:id="@+id/btn_city_wuxia"
                             style="@style/cateBtnStyle"
                             android:text="武侠"/>
 
@@ -155,18 +157,22 @@
                         android:layout_width="match_parent"
                         android:layout_height="40dp">
                         <Button
+                            android:id="@+id/btn_city_dushi"
                             style="@style/cateBtnStyle"
                             android:text="都市"
                             />
                         <Button
+                            android:id="@+id/btn_city_yijie"
                             style="@style/cateBtnStyle"
                             android:text="异界"
                             />
                         <Button
+                            android:id="@+id/btn_city_xiaoyuan"
                             style="@style/cateBtnStyle"
                             android:text="校园"
                             />
                         <Button
+                            android:id="@+id/btn_city_rexue"
                             style="@style/cateBtnStyle"
                             android:text="热血"/>
 
