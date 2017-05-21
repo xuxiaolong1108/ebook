@@ -6,7 +6,9 @@ package com.xxl.ebook.com.xxl.ebook.utils;
 
 public class Constant {
     //http://ycpackages.haowanyou.com/ycsdk/yclib/YCSDK.zip
-    public static final String url ="http://10.131.91.44:8080/ECity/";
+    //public static final String url ="http://10.132.47.172:8080/ECity/";
+    //public static final String url ="http://127.0.0.1:8080/ECity/";
+    public static final String url ="http://10.0.2.2:8080/ECity/";
     public static final String lianjie =url+"getallbooksbycate?cateid=1";
     public static final String rankListUrl  = url +"getrankinglist";
     public static final String imgUrl =url;
